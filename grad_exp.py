@@ -20,7 +20,7 @@ print(n,d)
 #t=torch.sign(torch.randn(n,1,device=device)+0.1)
 w0=torch.randn(d,1,device=device,requires_grad=True)
 
-for eta in [2,1,0.5,0.2]:
+for eta in [0.6,0.5,0.4,0.3]:
     w=w0
     loss=torch.nn.SoftMarginLoss()
     start=time.process_time()
