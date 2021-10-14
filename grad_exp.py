@@ -22,12 +22,13 @@ w=torch.randn(d,1,device=device,requires_grad=True)
 loss=torch.nn.SoftMarginLoss()
 
 start=time.process_time()
-for j in range(101):
-    y=torch.sigmoid(torch.matmul(x,w))
-    l=loss(y,t)+0.001*torch.sum(w.norm(2)**2)
-    print(j,l,time.process_time()-start)
-    g=torch.autograd.grad(l,w,create_graph=True)[0]
-    C=torch.zeros(d,d,device=device)
-    for i in range(d):
-        C[i]=torch.autograd.grad(g[i],w,create_graph=True)[0].t()
-    w = w-1.0*torch.matmul(torch.inverse(C.clone().detach()+0.000001*torch.eye(d,d,device=device)),g.clone().detach())
+for eta in [100,100,10,1,0.1,0.01]:
+    for j in range(11):
+        y=torch.sigmoid(torch.matmul(x,w))
+        l=loss(y,t)+0.001*torch.sum(w.norm(2)**2)
+        print(j,l,time.process_time()-start)
+        g=torch.autograd.grad(l,w,create_graph=True)[0]
+        C=torch.zeros(d,d,device=device)
+        for i in range(d):
+            C[i]=torch.autograd.grad(g[i],w,create_graph=True)[0].t()
+        w = w-eta*torch.matmul(torch.inverse(C.clone().detach()+0.000001*torch.eye(d,d,device=device)),g.clone().detach())
