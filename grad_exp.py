@@ -23,6 +23,7 @@ w0=torch.matmul(torch.matmul(torch.inverse(torch.matmul(x.t(),x)+0.000001*torch.
 
 for eta in [0.6,0.5,0.4,0.3]:
     w=w0
+    w.requires_grad=True
     loss=torch.nn.SoftMarginLoss()
     start=time.process_time()
     for j in range(11):
