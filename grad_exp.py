@@ -19,7 +19,7 @@ print(n,d)
 #x=torch.randn(n,d,device=device)
 #t=torch.sign(torch.randn(n,1,device=device)+0.1)
 # w0=torch.randn(d,1,device=device,requires_grad=True)
-w0=torch.matmul(torch.matmul(torch.inverse(torch.matmul(x.t(),x)+0.000001*torch.eye(d,d,device=device)),x.t()),y)
+w0=torch.matmul(torch.matmul(torch.inverse(torch.matmul(x.t(),x)+0.000001*torch.eye(d,d,device=device)),x.t()),t)
 
 for eta in [0.6,0.5,0.4,0.3]:
     w=w0
