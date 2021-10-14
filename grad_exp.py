@@ -16,7 +16,7 @@ t = torch.from_numpy(np.float32(data['y_train'])).cuda(device)
 s=torch.std(x, axis=0)
 s[s==0]=1
 x=(x-torch.mean(x, axis=0))/s
-torch.vstack([x,torch.ones(t.shape, device=device)])
+x=torch.vstack([x.t(),torch.ones(t.shape, device=device).t()]).t()
 n, d = x.shape
 print(n,d)
 #x=torch.randn(n,d,device=device)
