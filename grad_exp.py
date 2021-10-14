@@ -21,7 +21,7 @@ print(n,d)
 # w0=torch.randn(d,1,device=device,requires_grad=True)
 w0=torch.matmul(torch.matmul(torch.inverse(torch.matmul(x.t(),x)+0.001*torch.eye(d,d,device=device)),x.t()),t)
 
-for eta in [0.6,0.5,0.4,0.3]:
+for eta in [10,1]:
     w=w0
     w.requires_grad=True
     loss=torch.nn.SoftMarginLoss()
