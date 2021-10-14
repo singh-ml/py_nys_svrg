@@ -30,4 +30,5 @@ for j in range(101):
     C=torch.zeros(d,d,device=device)
     for i in range(d):
         C[i]=torch.autograd.grad(g[i],w,create_graph=True)[0].t()
-    w = w-300*(1/(j+1))*torch.matmul(torch.inverse(C.clone().detach()+1.0*torch.eye(d,d,device=device)),g.clone().detach())
+    # w = w-300*(1/(j+1))*torch.matmul(torch.inverse(C.clone().detach()+1.0*torch.eye(d,d,device=device)),g.clone().detach())
+    w = w-300*(1/(j+1))*torch.matmul(torch.inverse(C+1.0*torch.eye(d,d,device=device)),g)
