@@ -13,7 +13,9 @@ device='cuda:2'
 data = spio.loadmat(sys.argv[1])
 x = torch.from_numpy(np.float32(data['x_train'])).cuda(device)
 t = torch.from_numpy(np.float32(data['y_train'])).cuda(device)
-
+s=torch.std(x, axis=0)
+s[s==0]=1
+x=(x-torch.mean(x, axis=0))/s
 n, d = x.shape
 print(n,d)
 #x=torch.randn(n,d,device=device)
