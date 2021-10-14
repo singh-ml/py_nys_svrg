@@ -25,7 +25,7 @@ start=time.process_time()
 for j in range(101):
     y=torch.sigmoid(torch.matmul(x,w))
     l=loss(y,t)+0.001*torch.sum(w.norm(2)**2)
-    print(j,l.numpy(),time.process_time()-start)
+    print(j,l,time.process_time()-start)
     g=torch.autograd.grad(l,w,create_graph=True)[0]
     C=torch.zeros(d,d,device=device)
     for i in range(d):
