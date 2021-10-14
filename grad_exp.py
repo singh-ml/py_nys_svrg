@@ -18,9 +18,10 @@ n, d = x.shape
 print(n,d)
 #x=torch.randn(n,d,device=device)
 #t=torch.sign(torch.randn(n,1,device=device)+0.1)
+w0=torch.randn(d,1,device=device,requires_grad=True)
 
 for eta in [100,100,10,1,0.1,0.01]:
-    w=torch.randn(d,1,device=device,requires_grad=True)
+    w=w0
     loss=torch.nn.SoftMarginLoss()
     start=time.process_time()
     for j in range(11):
