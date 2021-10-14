@@ -11,7 +11,7 @@ torch.manual_seed(0)
 device='cuda:2'
 
 data = spio.loadmat(sys.argv[1])
-x = torch.from_numpy(data['x_train']).cuda(device)
+x = torch.from_numpy(np.float64(data['x_train'])).cuda(device)
 t = torch.from_numpy(np.float64(data['y_train'])).cuda(device)
 
 n, d = x.shape
