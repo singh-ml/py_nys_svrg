@@ -109,7 +109,7 @@ def train_cifar(config, checkpoint_dir=None, data_dir=None):
             # print statistics
             running_loss += loss.item()
             epoch_steps += 1
-            if i % 2000 == 1999:  # print every 2000 mini-batches
+            if i % 200 == 1999:  # print every 2000 mini-batches
                 print("[%d, %5d] loss: %.3f" % (epoch + 1, i + 1, running_loss / epoch_steps))
                 running_loss = 0.0
 
