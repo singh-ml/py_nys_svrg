@@ -194,7 +194,7 @@ def main(num_samples=10, max_num_epochs=10, gpus_per_trial=2):
     best_trained_model = Net(best_trial.config["l1"], best_trial.config["l2"])
     device = "cpu"
     if torch.cuda.is_available():
-        device = "cuda:0"
+        device = "cuda:3"
         if gpus_per_trial > 1:
             best_trained_model = nn.DataParallel(best_trained_model)
     best_trained_model.to(device)
@@ -210,4 +210,4 @@ def main(num_samples=10, max_num_epochs=10, gpus_per_trial=2):
 
 if __name__ == "__main__":
     # You can change the number of GPUs per trial here:
-    main(num_samples=10, max_num_epochs=10, gpus_per_trial=0)
+    main(num_samples=10, max_num_epochs=10, gpus_per_trial=3)
