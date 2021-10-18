@@ -20,7 +20,7 @@ from ray import tune
 from ray.tune import CLIReporter
 from ray.tune.schedulers import ASHAScheduler
 
-def load_data(data_dir="./data"):
+def load_data(data_dir="~/data"):
     transform = transforms.Compose([
         transforms.ToTensor(),
         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
@@ -159,7 +159,7 @@ def test_accuracy(net, device="cpu"):
     return correct / total
 
 def main(num_samples=10, max_num_epochs=10, gpus_per_trial=2):
-    data_dir = os.path.abspath("./data")
+    data_dir = os.path.abspath("~/data")
     load_data(data_dir)
     config = {
         "l1": tune.sample_from(lambda _: 2 ** np.random.randint(2, 9)),
