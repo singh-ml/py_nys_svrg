@@ -127,6 +127,7 @@ class NSGD(Optimizer):
                     params_with_grad.append(p)
                     nel=torch.numel(p.grad)
                     Hp=torch.zeros(nel,nel)
+                    p.grad.requires_grad=True
                     for i,pg in enumerate(p.grad):
                         Hp[i]=torch.autograd.grad(pg, p)
                     d_p = torch.inv(Hp+self.rho*torch.eye(nel))*p.grad.data
