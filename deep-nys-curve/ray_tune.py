@@ -65,8 +65,8 @@ def train_cifar(config, checkpoint_dir=None, data_dir=None):
     net.to(device)
 
     criterion = nn.CrossEntropyLoss()
-    #optimizer = optim.SGD(net.parameters(), lr=config["lr"], momentum=0.9)
-    optimizer = NSGD(net.parameters(), lr=config["lr"], momentum=0.9)
+    optimizer = optim.SGD(net.parameters(), lr=config["lr"], momentum=0.9)
+    #optimizer = NSGD(net.parameters(), lr=config["lr"], momentum=0.9)
     #optimizer = AccSGD(net.parameters(), lr=0.1, kappa = 1000.0, xi = 10.0)
 
     if checkpoint_dir:
