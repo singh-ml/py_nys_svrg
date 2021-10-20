@@ -107,7 +107,7 @@ def train_cifar(config, checkpoint_dir=None, data_dir=None):
             outputs = net(inputs)
             loss = criterion(outputs, labels)
             loss.backward()
-            optimizer.step()
+            optimizer.step(loss=loss)
 
             # print statistics
             running_loss += loss.item()

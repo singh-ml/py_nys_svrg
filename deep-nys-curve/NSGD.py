@@ -100,7 +100,7 @@ class NSGD(Optimizer):
             group.setdefault('nesterov', False)
 
     @torch.no_grad()
-    def step(self, closure=None):
+    def step(self, loss=loss, closure=None):
         """Performs a single optimization step.
 
         Args:
@@ -127,8 +127,8 @@ class NSGD(Optimizer):
                     params_with_grad.append(p)
                     nel=torch.numel(p.grad)
                     Hp=torch.zeros(nel,nel)
-                    p.grad.requires_grad=True
-                    for i,pg in enumerate(p.grad):
+                    p_g=torch.autograd.grad(loss, p)
+                    for i,pg in enumerate(p_g):
                         Hp[i]=torch.autograd.grad(pg, p)
                     d_p = torch.inv(Hp+self.rho*torch.eye(nel))*p.grad.data
                     d_p_list.append(d_p)
