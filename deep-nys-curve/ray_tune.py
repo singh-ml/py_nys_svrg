@@ -66,7 +66,7 @@ def train_cifar(config, checkpoint_dir=None, data_dir=None):
 
     criterion = nn.CrossEntropyLoss()
     #optimizer = optim.SGD(net.parameters(), lr=config["lr"], momentum=0.9)
-    optimizer = AccSGD(model.parameters(), lr=0.1, kappa = 1000.0, xi = 10.0)
+    optimizer = AccSGD(net.parameters(), lr=0.1, kappa = 1000.0, xi = 10.0)
 
     if checkpoint_dir:
         model_state, optimizer_state = torch.load(
