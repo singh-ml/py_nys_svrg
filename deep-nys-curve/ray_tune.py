@@ -106,7 +106,7 @@ def train_cifar(config, checkpoint_dir=None, data_dir=None):
             # forward + backward + optimize
             outputs = net(inputs)
             loss = criterion(outputs, labels)
-            loss.backward()
+            loss.backward(retain_graph=True)
             for p in net.parameters():
                 nel=torch.numel(p.grad)
                 Hp=torch.zeros(nel,nel)
