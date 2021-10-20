@@ -1,6 +1,6 @@
 import torch
 from torch.optim import functional as F
-from torch.optimizer import Optimizer, required
+from torch.optim.optimizer import Optimizer, required
 
 
 class NSGD(Optimizer):
