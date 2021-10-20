@@ -125,13 +125,7 @@ class NSGD(Optimizer):
             for p in group['params']:
                 if p.grad is not None:
                     params_with_grad.append(p)
-                    nel=torch.numel(p.grad)
-                    Hp=torch.zeros(nel,nel)
-                    p_g=p.grad #torch.autograd.grad(loss, p)
-                    for i,pg in enumerate(p_g):
-                        Hp[i]=torch.autograd.grad(pg, p)
-                    d_p = torch.inv(Hp+self.rho*torch.eye(nel))*p.grad.data
-                    d_p_list.append(d_p)
+                    d_p_list.append(p.grad)
 
                     state = self.state[p]
                     if 'momentum_buffer' not in state:
