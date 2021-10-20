@@ -110,10 +110,10 @@ def train_cifar(config, checkpoint_dir=None, data_dir=None):
             for p in net.parameters():
                 nel=torch.numel(p.grad)
                 Hp=torch.zeros(nel,nel)
-                p_g=p.grad #torch.autograd.grad(loss, p)
+                p_g=torch.autograd.grad(loss, p)
                 for i,pg in enumerate(p_g):
                     Hp[i]=torch.autograd.grad(pg, p)
-                p.grad = torch.inv(Hp+0.01*torch.eye(nel))*p.grad.data
+                p.grad = torch.inv(Hp+0.01*torch.eye(nel))*p_g
             optimizer.step()
 
             # print statistics
