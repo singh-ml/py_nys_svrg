@@ -19,6 +19,7 @@ import torchvision.transforms as transforms
 from ray import tune
 from ray.tune import CLIReporter
 from ray.tune.schedulers import ASHAScheduler
+from AccSGD import *
 
 def load_data(data_dir="/home/singh/data"):
     transform = transforms.Compose([
@@ -64,7 +65,7 @@ def train_cifar(config, checkpoint_dir=None, data_dir=None):
     net.to(device)
 
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.SGD(net.parameters(), lr=config["lr"], momentum=0.9)
+    optimizer = AccSGD(net.parameters(), lr=config["lr"], momentum=0.9)
 
     if checkpoint_dir:
         model_state, optimizer_state = torch.load(
