@@ -4,7 +4,7 @@ save_data_on_exit = True
 save_history = True
 save_non_project_files = False
 project_type = empty-project-type
-recent_files = ['ray_tune.py']
+recent_files = ['ray_tune.py', 'NSGD.py', '../../histo/unet_mil.py', '../../Downloads/FL_EML (1).py']
 
 [main]
 version = 0.2.0
